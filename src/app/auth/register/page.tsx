@@ -1,10 +1,5 @@
+import RegisterForm from "./RegisterForm";
 
-
-
-export default function Register(){
-    return (
-        <div>
-            Registro de rota
-        </div>
-    );
+export default function LoginPage(){
+    return <RegisterForm/>
 }
