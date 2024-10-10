@@ -1,3 +1,4 @@
+// the route is /api/auth/login
 import { NextRequest, NextResponse} from "next/server";
 import { LoginValidation } from "@/app/lib/validations/LoginValidation";
 
