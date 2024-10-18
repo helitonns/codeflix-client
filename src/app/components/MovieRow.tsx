@@ -1,11 +1,13 @@
+import { Movies } from "../types/movie";
 import MovieCard from "./MovieCard";
 
 
 type MovieProps = {
     sectionTitle : string;
+    movies: Movies;
 }
 
-export default function MovieRow({sectionTitle} : MovieProps){
+export default function MovieRow({sectionTitle, movies} : MovieProps){
     return (
         <div className='flex-col space-y-4'>
             <div>
@@ -13,9 +15,12 @@ export default function MovieRow({sectionTitle} : MovieProps){
                 {sectionTitle}
                 </h2>
             </div>
-            <div className='flex space-x-4 overflow-x-scroll scrollbar-hide'>
-                {[1,2,3,4,5,1,2,3,4,5].map((index)=>(
-                    <MovieCard key={index} index={index} />
+            <div className='grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8'>
+                {movies.map((movie)=> (
+                    <MovieCard 
+                        key={movie.id} 
+                        movie={movie} 
+                    />
                 ))}
             </div>
     </div>
