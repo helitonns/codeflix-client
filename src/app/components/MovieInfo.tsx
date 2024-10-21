@@ -1,6 +1,7 @@
 import { ChevronDownIcon, PlayIcon, PlusIcon, SpeakerWaveIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Movie } from "../types/movie";
+import MovieRating from "./MovieRating";
 
 
 export default function MovieInfo({movie} : {movie: Movie}){
@@ -34,7 +35,7 @@ export default function MovieInfo({movie} : {movie: Movie}){
                 </div>
                 <div className="flex flex-row items-center gap-2">
                     <UserGroupIcon className="w-4" /> 
-                    {/* <MovieRating rating={movie.rating} /> */}
+                    <MovieRating rating={movie.rating} />
                 </div>
             </div>
             

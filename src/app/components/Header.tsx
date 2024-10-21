@@ -5,12 +5,29 @@ import UserProfile from "./UserProfile";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import useScroll from "../hooks/useScroll";
-
-
+import SearchForm from "./SearchForm";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Header(){
 
+    const router = useRouter();
+    const params = useSearchParams();
+    const initialSearchTerm = params.get("title") || "";
+
     const isScrolled = useScroll();
+    const [searchTerm, setSearchTerm] = React.useState<string>(initialSearchTerm);
+    const onSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>)=>{
+        setSearchTerm(event.target.value);
+    }
+
+    const onSearch = (event: React.FormEvent<HTMLFormElement>)=> {
+        event.preventDefault();
+
+        const newParams = new URLSearchParams(params.toString());
+        newParams.set("title", searchTerm);
+        router.push(`/search?${newParams.toString}`);
+    }
+
 
     return (
         <header className={`${isScrolled && 'bg-black'} 
@@ -20,7 +37,11 @@ export default function Header(){
                 <Logo />
                 <NavLinks />
             </div>
-            <UserProfile />
+
+            <div className="flex items-center space-x-2 md:space-x-8">
+                <SearchForm searchTerm={searchTerm} onSearchTermChange={onSearchTermChange} onSearch={onSearch} />
+                <UserProfile />
+            </div>
         </header>
     );
 }
