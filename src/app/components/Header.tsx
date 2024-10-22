@@ -25,7 +25,7 @@ export default function Header(){
 
         const newParams = new URLSearchParams(params.toString());
         newParams.set("title", searchTerm);
-        router.push(`/search?${newParams.toString}`);
+        router.push(`/search?${newParams.toString()}`);
     }
 
 
